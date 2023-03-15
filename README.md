@@ -1,7 +1,20 @@
 # UnityGen AI
 
-UnityGen AI is an AI-powered code generation plugin for Unity. It allows you to quickly generate and modify code directly within the Unity editor, using the power of AI to streamline your workflow and reduce the time you spend writing and debugging code. UnityGen AI is using  Openai Codex model and text models, so it has one demerit  you need a Api key. which you can obtain from :-
+UnityGen AI is an AI-powered code generation plugin for Unity. It allows you to quickly generate and modify code directly within the Unity editor, using the power of AI to streamline your workflow and reduce the time you spend writing and debugging code. UnityGen AI is using  Openai Codex model and text models, so it has one demerit  you need a Api key. 
+
+# Installation
+
+###  Get API Key from :-
 https://platform.openai.com/account/api-keys
+
+### Drag and drop the Plugin to your unity project or Clone fron this repo 
+
+- Right Click in the **Project Window** then Click to **Create**
+- Now Click on AIconfig
+- Name the Scriptable Object to "AIConfig"
+- Now final step is Add your APIKEY in AI Config Scriptable Object
+
+![image](https://user-images.githubusercontent.com/84278213/225300120-595668e9-f1cd-45f7-8839-e43318ca01e2.png)
 
 # Features
 
