@@ -8,7 +8,8 @@ using UnityEngine;
 
 public class SmartAI {
     private const string API_URL = "https://api.openai.com/v1/completions";
-
+    private float timeBetweenRequests = 2f; // Time in seconds between requests
+    private float lastRequestTime = 0f; // Time of the last request
 
     private readonly string apiKey ;
     public bool isProcessing;
@@ -19,6 +20,12 @@ public class SmartAI {
 
    public void SendChatRequest(string prompt, int maxTokens, float temperature, System.Action<string> onResponse) 
     {
+         if (Time.time < lastRequestTime + timeBetweenRequests)
+        {
+            // Don't send another request until enough time has passed
+            return;
+        }
+
         isProcessing = true;
         string url = API_URL;
         var request = new UnityWebRequest(url, "POST");
@@ -31,6 +38,8 @@ public class SmartAI {
         request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
         request.SendWebRequest();
 
+        lastRequestTime = Time.time; // Update the time of the last request
+        
         while (!request.isDone)
         {
             // Do nothing until the request has completed
