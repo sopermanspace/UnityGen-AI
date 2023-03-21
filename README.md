@@ -37,6 +37,6 @@ UnityGen AI is an open-source project, and contributions are welcome. If you'd l
 <div align="center">
   
 **************************************************************
-# [We hope you 💗 using UniGen!](https://github.com/sponsors/himanshuskyrockets/)
+# [We hope you 💗 using UnityGen!](https://github.com/sponsors/himanshuskyrockets/)
 ***************************************************************
 </div>
