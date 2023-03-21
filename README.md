@@ -33,3 +33,10 @@ https://platform.openai.com/account/api-keys
 
 # Your Contribution Matters!
 UnityGen AI is an open-source project, and contributions are welcome. If you'd like to contribute to the project, please fork the repository and submit a pull request with your changes. 
+
+<div align="center">
+  
+**************************************************************
+# [We hope you 💗 using UniGen!](https://github.com/sponsors/himanshuskyrockets/)
+***************************************************************
+</div>
