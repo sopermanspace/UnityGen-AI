@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scene/UniGenAI.unity
+    guid: 10a770547a9e34647871be8eae4c7ba2
   m_configObjects: {}
