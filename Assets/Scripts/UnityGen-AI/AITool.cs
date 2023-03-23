@@ -7,32 +7,34 @@ public class AITool : EditorWindow
     [Tooltip("Prompt to start the AI with.")]
     public static string prompt;
     [Tooltip("Max tokens to generate. Must be between 1 and 2048.")]
-    public static int maxTokens = 100;
+    public static int maxTokens;
     [Tooltip("Temperature Controls the Variants. Must be between 0 and 1.")]
-    public static float temperature = 0.2f;
+    public static float temperature;
     public static string response;
     private Vector2 responseScroll = Vector2.zero;
     public  SmartAI ai;
     private bool isProcessing;
     string scriptName;
     public AIConfig config;
-
+    public bool hasReceivedResponse  = false;
 
     [MenuItem("UniGen AI/AI Tool")]
-    public static void ShowWindow()
-    {
+ public static void ShowWindow(){
+
        var window = GetWindow<AITool>("Code Tool");
         window.Reset();
+         maxTokens = 100;
+         temperature = 0.2f;
     }
 
-       public void Reset()
-    {
+public void Reset(){
+
         prompt = "";
-        // response = "";
     }
 
-    public void OnEnable()
-    {
+// This  function is called when the window is opened to load the AIConfig asset
+ public void OnEnable(){
+
         config = AssetDatabase.LoadAssetAtPath<AIConfig>("Assets/AIConfig.asset");
 
         if (config == null)
@@ -45,35 +47,8 @@ public class AITool : EditorWindow
         }
     }
 
-    private void OnResponseReceived(string resp){    
-        response = resp;
-        isProcessing = false;
-        
+ public void OnGUI(){
 
-   // Append response to script as a comment
-    string script = GenerateScript();
-    script += "\n// Generated response: " + resp;
-    string filePath = Application.dataPath + "/response.txt"; // This will Crete A Text File In Assets Folder
-
-    if (File.Exists(filePath))
-    {
-        File.WriteAllText(filePath, response);
-    }
-    else
-    {
-        Debug.LogError("File does not exist: " + filePath);
-    }
-
-    AssetDatabase.Refresh();
-
-
-    // Display message Box to show response has been generated
-    EditorUtility.DisplayDialog("Response Received", "The response has been generated.", "OK");
-  
-    }
-
-    public void OnGUI()
-    {
         GUILayout.Label("AI Tool", EditorStyles.boldLabel);
 
         prompt = EditorGUILayout.TextField("Prompt:", prompt); 
@@ -81,18 +56,23 @@ public class AITool : EditorWindow
         temperature = EditorGUILayout.Slider("Temperature:", temperature, 0f, 1f);
 
           // Draw Send Request button
-        if (GUILayout.Button("Send Request") && !isProcessing && !string.IsNullOrEmpty(prompt))
-        {
+        if (GUILayout.Button("Send Request") && !isProcessing && !string.IsNullOrEmpty(prompt)) {
+        if (!hasReceivedResponse) {
             Debug.Log("Sending chat request...");
             ai.SendChatRequest(prompt, maxTokens, temperature, OnResponseReceived);
             isProcessing = true;
-        }    
-     
- 
-         if (!isProcessing && !string.IsNullOrEmpty(response)){
+        } else {
+            Debug.Log("Sending follow-up request...");
+            ai.SendChatRequest(prompt + " " + response, maxTokens, temperature, OnResponseReceived);
+            isProcessing = true;
+            hasReceivedResponse = false;
+        }
+    }
+       
 
-            // Draw output panel for response
-            
+         if (isProcessing && !string.IsNullOrEmpty(response)){
+
+            // Draw output panel for response 
             GUILayout.BeginArea(new Rect(10, 110, position.width - 20, 50000));
             GUILayout.Label("Response:", EditorStyles.boldLabel);
             responseScroll = GUILayout.BeginScrollView(responseScroll);
@@ -119,17 +99,45 @@ public class AITool : EditorWindow
        }
     }
 
-    private string GenerateScript()
+ private void OnResponseReceived(string resp){    
+       
+        response = resp;
+        isProcessing = false;
+        hasReceivedResponse  = true; 
+        
+   // Append response to script as a comment
+    string script = GenerateScript();
+    script += "\n// Generated response: " + resp;
+    string filePath = Application.dataPath + "/response.txt"; // This will Crete A Text File In Assets Folder
+
+    if (File.Exists(filePath))
     {
-        string script = @"using UnityEngine;
-public class MyScript : MonoBehaviour
+        File.WriteAllText(filePath, response);
+    }
+    else
+    {
+        Debug.LogError("File does not exist: " + filePath);
+    }
+
+    AssetDatabase.Refresh();
+
+    // Display message Box to show response has been generated
+    EditorUtility.DisplayDialog("Response Received", "The response has been generated.", "OK");
+    
+         
+ }
+
+   private string GenerateScript()
 {
-    private void Start()
-    {
+    string script = $@"using UnityEngine;
+public class MyScript : MonoBehaviour
+{{
+   
+        {response}
         // Insert code here
-     
-    }
-}";
-        return script;
-    }
+   
+}}";
+    return script;
+}
+
 }

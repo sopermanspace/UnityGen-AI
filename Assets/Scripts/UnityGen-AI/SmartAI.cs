@@ -1,6 +1,3 @@
-//  private string apiKey = ""; // 
-// public const string endpointUrl = "https://api.openai.com/v1/completions";//"https://api.openai.com/v1/chat/completions"
-
 using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine;
