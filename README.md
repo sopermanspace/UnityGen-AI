@@ -21,6 +21,7 @@ https://platform.openai.com/account/api-keys
 - Now final step is Add your APIKEY in AI Config Scriptable Object
 
 ![image](https://user-images.githubusercontent.com/84278213/225302017-b288954f-b668-4044-9975-e56da43d0727.png)
+![image](https://user-images.githubusercontent.com/84278213/233549588-fe5c1877-fd40-4213-b223-dd5d5c49f49b.png)
 
 
 # Features
