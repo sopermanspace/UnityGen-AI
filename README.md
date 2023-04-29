@@ -1,7 +1,9 @@
 # UnityGen AI
+[![Twitter Follow](https://img.shields.io/twitter/follow/youtube?label=Follow&logo=Github&style=social)](https://github.com/himanshuskyrockets) [![Twitter Follow](https://img.shields.io/twitter/follow/youtube?label=subscribe&logo=youtube&style=social)](https://www.youtube.com/watch?v=2nc4Hkyl9Q0) [![Medium.com](https://img.shields.io/badge/medium-.com-blue)](https://medium.com/@Clubwritter) [![Twitter Follow](https://img.shields.io/twitter/follow/youtube?label=Follow&logo=twitter&style=social)](https://twitter.com/superman_space) [![Support](https://img.shields.io/badge/-Support-green)](https://github.com/sponsors/himanshuskyrockets/)
+
 ![Gen](https://user-images.githubusercontent.com/84278213/229094938-f238b523-2857-468f-8f3c-3a72ee77d9c7.png)
 
-UnityGen AI (Limited-Beta) is an AI-powered code generation plugin for Unity. It allows you to quickly generate and modify code directly within the Unity editor, using the power of AI to streamline your workflow and reduce the time you spend writing and refactoring code. UnityGen AI is using  Openai Codex model and text models, so it has one demerit  you need a Api key. 
+**UnityGen AI (Limited-Beta) is an AI-powered code generation plugin for Unity. It allows you to quickly generate and modify code directly within the Unity editor, using the power of AI to streamline your workflow and reduce the time you spend writing and refactoring code. UnityGen AI is using  Openai Codex model and text models, so it has one demerit  you need a Api key.** Kindly take note that the plugin is presently in the development phase, and as such, you may encounter a few errors. You can choose to resolve them yourself, or you can wait for us to address them on your behalf.
 
 # Getting started
 To get started with UnityGen AI Plugin, Follow the Below Steps:
